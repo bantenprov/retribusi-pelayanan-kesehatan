@@ -16,19 +16,19 @@ class CreatePelayananKesehatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelayanan_kesehatan', function (Blueprint $table) {
+        Schema::create('pelayanan_kesehatans', function (Blueprint $table) {
             //$table->increments('id');
             $table->uuid('id')->unique();
             $table->primary('id');
             $table->string('kunker')->index();
             $table->string('name');
-            $table->string('kunker_sinjab')->nullable();            
+            $table->string('kunker_sinjab')->nullable();
             $table->string('kunker_simral')->nullable();
             $table->integer('levelunker');
             $table->string('njab');
             $table->string('npej');
             NestedSet::columns($table);
-            $table->timestamps();   
+            $table->timestamps();
         });
     }
 
