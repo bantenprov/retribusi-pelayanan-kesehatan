@@ -7,7 +7,7 @@ use Kalnoy\Nestedset\NestedSet;
 
 
 
-class CreatePelayananKesehatanTable extends Migration
+class CreatePelayananKesehatansTable extends Migration
 {
     /**
      * Run the migrations.
