@@ -26,9 +26,9 @@ class PelayananKesehatan
 
     public function index()
     {
-        return $pelanan_kesehatans = PelayananKesehatanModel::orderBy('kunker','asc')->get();                
+        return $pelayanan_kesehatans = PelayananKesehatanModel::orderBy('kunker','asc')->get();                
 
-        //return view('unit_kerja.index',compact('pelanan_kesehatans'));
+        //return view('unit_kerja.index',compact('pelayanan_kesehatans'));
         
     }
 

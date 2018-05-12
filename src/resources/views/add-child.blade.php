@@ -21,7 +21,7 @@
           </div>
           <div class="card-body">
             
-            <form action="{{route('pelanan_kesehatan.store.child',$unit_kerja->id)}}" method="post">
+            <form action="{{route('pelayanan_kesehatan.store.child',$unit_kerja->id)}}" method="post">
               
               <div class="form-group">
                 <label for="name">Induk Unit Kerja</label>

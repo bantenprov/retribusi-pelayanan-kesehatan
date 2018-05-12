@@ -11,7 +11,7 @@
         <div class="card">
           <div class="card-header">
             <i class="fa fa-align-justify"></i> Daftar Pelayanan Kesehatan
-            <a href="{{ route('pelanan_kesehatan.create.root') }}" class="float-right">
+            <a href="{{ route('pelayanan_kesehatan.create.root') }}" class="float-right">
               <button type="button" class="btn btn-warning">Add root</button>
             </a>&nbsp;
           </div>
@@ -28,7 +28,7 @@
                 </tr>
               </thead>
 
-              @foreach($pelanan_kesehatans as $pelanan_kesehatan)
+              @foreach($pelayanan_kesehatans as $pelayanan_kesehatan)
               <tr>
                 <td>{{$pelayanan_kesehatan->id}}</td>
                 <td>{{$pelayanan_kesehatan->kunker}}</td>
@@ -36,10 +36,10 @@
                 <td>{{$pelayanan_kesehatan->levelunker}}</td>
                 <td>{{$pelayanan_kesehatan->created_at->toFormattedDateString()}}</td>
                 <td>
-                  <a href="{{ route('pelanan_kesehatan.add.child',$pelayanan_kesehatan->id) }}">
+                  <a href="{{ route('pelayanan_kesehatan.add.child',$pelayanan_kesehatan->id) }}">
                     <button type="button" class="btn btn-warning">Add child</button>
                   </a>
-                  <a href="{{ route('pelanan_kesehatan.edit',$pelayanan_kesehatan->id) }}">
+                  <a href="{{ route('pelayanan_kesehatan.edit',$pelayanan_kesehatan->id) }}">
                     <button type="button" class="btn btn-success">Edit</button>
                   </a>
                 </td>
@@ -51,10 +51,10 @@
 
             <nav>
               <ul class="pagination">
-                @if ($pelanan_kesehatans->onFirstPage())                  
+                @if ($pelayanan_kesehatans->onFirstPage())                  
                   <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
                 @else
-                  <li class="page-item"><a class="page-link" href="{{ $pelanan_kesehatans->previousPageUrl() }}">Prev</a></li>
+                  <li class="page-item"><a class="page-link" href="{{ $pelayanan_kesehatans->previousPageUrl() }}">Prev</a></li>
                 @endif                
                 {{-- <li class="page-item active">
                   <a class="page-link" href="#">1</a>
@@ -62,8 +62,8 @@
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#">4</a></li> --}}
-                @if ($pelanan_kesehatans->hasMorePages())
-                  <li class="page-item"><a class="page-link" href="{{$pelanan_kesehatans->nextPageUrl()}}">Next</a></li>
+                @if ($pelayanan_kesehatans->hasMorePages())
+                  <li class="page-item"><a class="page-link" href="{{$pelayanan_kesehatans->nextPageUrl()}}">Next</a></li>
                 @else
                   <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                 @endif

@@ -20,12 +20,12 @@
         <div class="card">
           <div class="card-header">
             <i class="fa fa-align-justify"></i> Edit Pelayanan Kesehatan
-            <a href="{{ route('pelanan_kesehatan.create.root') }}" class="float-right">
+            <a href="{{ route('pelayanan_kesehatan.create.root') }}" class="float-right">
               <button type="button" class="btn btn-warning">Show</button>
             </a>&nbsp;
           </div>
           <div class="card-body">
-            <form action="{{route('pelanan_kesehatan.update', $pelayanan_kesehatan->id)}}" method="POST">
+            <form action="{{route('pelayanan_kesehatan.update', $pelayanan_kesehatan->id)}}" method="POST">
               <input type="hidden" name="_method" value="PUT">
               <div class="form-group">
                 <label for="company">Kode Unit Kerja</label>

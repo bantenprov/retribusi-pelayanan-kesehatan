@@ -22,7 +22,7 @@ class PelayananKesehatanController extends Controller
     public function index()
     {
 
-        $pelanan_kesehatans = PelayananKesehatanModel::orderBy('kunker','asc')->paginate(10);        
+        $pelayanan_kesehatans = PelayananKesehatanModel::orderBy('kunker','asc')->paginate(10);        
 
         /* $nodes = PelayananKesehatanModel::get()->toTree();
 
@@ -37,7 +37,7 @@ class PelayananKesehatanController extends Controller
         $traverse($nodes); */
 
 
-        return view('pelayanan-kesehatan::index',compact('pelanan_kesehatans'));
+        return view('pelayanan-kesehatan::index',compact('pelayanan_kesehatans'));
         
     }
 
@@ -120,9 +120,9 @@ class PelayananKesehatanController extends Controller
 
     public function edit($id)
     {
-        $pelanan_kesehatan = PelayananKesehatanModel::find($id);        
+        $pelayanan_kesehatan = PelayananKesehatanModel::find($id);        
 
-        return view('pelayanan-kesehatan::edit', compact('pelanan_kesehatan'));
+        return view('pelayanan-kesehatan::edit', compact('pelayanan_kesehatan'));
     }
 
     public function update($id, Request $request)
@@ -147,8 +147,8 @@ class PelayananKesehatanController extends Controller
             'npej'              => $request->npej  ? $request->npej : '',
         ]);
 
-        $request->session()->flash('message', 'Successfully modified the pelanan_kesehatan!');
+        $request->session()->flash('message', 'Successfully modified the pelayanan_kesehatan!');
 
-        return redirect()->route('pelanan_kesehatan.index');
+        return redirect()->route('pelayanan_kesehatan.index');
     }
 }

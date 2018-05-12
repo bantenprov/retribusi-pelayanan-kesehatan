@@ -16,7 +16,7 @@ class CreatePelayananKesehatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelanan_kesehatan', function (Blueprint $table) {
+        Schema::create('pelayanan_kesehatan', function (Blueprint $table) {
             //$table->increments('id');
             $table->uuid('id')->unique();
             $table->primary('id');
@@ -39,6 +39,6 @@ class CreatePelayananKesehatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelanan_kesehatan');
+        Schema::dropIfExists('pelayanan_kesehatan');
     }
 }

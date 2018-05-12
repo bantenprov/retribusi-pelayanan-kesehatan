@@ -21,7 +21,7 @@
           </div>
           <div class="card-body">
 
-            <form action="{{route('pelanan_kesehatan.store.root')}}" method="post">
+            <form action="{{route('pelayanan_kesehatan.store.root')}}" method="post">
               <div class="form-group">
                 <label for="kunker">Kode Unit Kerja</label>
                 <input type="text" name="kunker" class="form-control" id="kunker" placeholder="Enter Kode Unit Kerja">

@@ -18,7 +18,7 @@ class PelayananKesehatanModel extends Model
     use Uuids;
     
 
-    protected $table = "pelanan_kesehatan";
+    protected $table = "pelayanan_kesehatan";
     protected $fillable = [
             'kunker',
             'name',
