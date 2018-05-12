@@ -7,7 +7,7 @@ use Kalnoy\Nestedset\NestedSet;
 
 
 
-class CreatePelayananKesehatansTable extends Migration
+class CreatePelayananKesehatanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,19 +16,19 @@ class CreatePelayananKesehatansTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelayanan_kesehatans', function (Blueprint $table) {
+        Schema::create('pelanan_kesehatan', function (Blueprint $table) {
             //$table->increments('id');
             $table->uuid('id')->unique();
             $table->primary('id');
             $table->string('kunker')->index();
             $table->string('name');
-            $table->string('kunker_sinjab')->nullable();
+            $table->string('kunker_sinjab')->nullable();            
             $table->string('kunker_simral')->nullable();
             $table->integer('levelunker');
             $table->string('njab');
             $table->string('npej');
             NestedSet::columns($table);
-            $table->timestamps();
+            $table->timestamps();   
         });
     }
 
@@ -39,6 +39,6 @@ class CreatePelayananKesehatansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelayanan_kesehatan');
+        Schema::dropIfExists('pelanan_kesehatan');
     }
 }

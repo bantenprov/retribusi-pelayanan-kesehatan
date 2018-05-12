@@ -18,8 +18,16 @@ class PelayananKesehatanModel extends Model
     use Uuids;
     
 
-    protected $table = "pelayanan_kesehatan";
-    protected $fillable = ['kunker','name','kunker_sinjab','kunker_simral','levelunker','njab','npej'];
+    protected $table = "pelanan_kesehatan";
+    protected $fillable = [
+            'kunker',
+            'name',
+            'kunker_sinjab',
+            'kunker_simral',
+            'levelunker',
+            'njab',
+            'npej'
+    ];
     protected $hidden = [];
     public $incrementing = false;
 }

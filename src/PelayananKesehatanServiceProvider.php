@@ -106,7 +106,7 @@ class PelayananKesehatanServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom($packageTranslationsPath, 'pelayanan-kesehatan');
 
         $this->publishes([
-            $packageTranslationsPath => resource_path('lang/vendor/pelayanan-kesehatan'),
+            $packageTranslationsPath => resource_path('lang/bantenprov/pelayanan-kesehatan'),
         ], 'lang');
     }
 
@@ -122,8 +122,8 @@ class PelayananKesehatanServiceProvider extends ServiceProvider
         $this->loadViewsFrom($packageViewsPath, 'pelayanan-kesehatan');
 
         $this->publishes([
-            $packageViewsPath => resource_path('views/vendor/pelayanan-kesehatan'),
-        ], 'views');
+            $packageViewsPath => resource_path('views/bantenprov/pelayanan-kesehatan'),
+        ], 'pelayanan-kesehatan-views');
     }
 
     /**
@@ -136,7 +136,7 @@ class PelayananKesehatanServiceProvider extends ServiceProvider
         $packageAssetsPath = __DIR__.'/resources/assets';
 
         $this->publishes([
-            $packageAssetsPath => public_path('vendor/pelayanan-kesehatan'),
+            $packageAssetsPath => public_path('bantenprov/pelayanan-kesehatan'),
         ], 'public');
     }
 

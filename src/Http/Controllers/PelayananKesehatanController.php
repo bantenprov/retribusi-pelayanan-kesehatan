@@ -22,9 +22,9 @@ class PelayananKesehatanController extends Controller
     public function index()
     {
 
-        $pelayanan_kesehatans = PelayananKesehatanModel::orderBy('kunker','asc')->get();                
+        $pelanan_kesehatans = PelayananKesehatanModel::orderBy('kunker','asc')->paginate(10);        
 
-        $nodes = PelayananKesehatanModel::get()->toTree();
+        /* $nodes = PelayananKesehatanModel::get()->toTree();
 
         $traverse = function ($categories, $prefix = '-') use (&$traverse) {
             foreach ($categories as $category) {
@@ -34,35 +34,43 @@ class PelayananKesehatanController extends Controller
             }
         };
 
-        $traverse($nodes);
+        $traverse($nodes); */
 
 
-        return view('pelayanan-kesehatan::unit_kerja.index',compact('pelayanan_kesehatans'));
+        return view('pelayanan-kesehatan::index',compact('pelanan_kesehatans'));
         
     }
 
     public function createRoot()
     {
 
-        return view('pelayanan-kesehatan::unit_kerja.create-root');
+        return view('pelayanan-kesehatan::create-root');
     }
 
     public function createChild()
     {
         $unit_kerjas = PelayananKesehatanModel::all();
 
-        return view('pelayanan-kesehatan::unit_kerja.create-child',compact('unit_kerjas'));
+        return view('pelayanan-kesehatan::create-child',compact('unit_kerjas'));
     }
 
     public function addChild($id)
     {
         $unit_kerja = PelayananKesehatanModel::where('id',$id)->first();
 
-        return view('pelayanan-kesehatan::unit_kerja.add-child',compact('unit_kerja'));
+        return view('pelayanan-kesehatan::add-child',compact('unit_kerja'));
     }
 
     public function storeRoot(Request $request)
     {
+        $request->validate([
+            'kunker'            => 'required',
+            'leveunker'         => 'required',
+            'name'              => 'required',
+            'njab'              => 'required',
+            'npej'              => 'required',
+        ]);
+
         $check_root = PelayananKesehatanModel::where('id',$request->root);
 
         if($check_root->get()->isEmpty())
@@ -88,18 +96,59 @@ class PelayananKesehatanController extends Controller
 
     public function storeChild(Request $request)
     {
+        $request->validate([
+            'kunker'            => 'required',
+            'name'              => 'required',
+            'njab'              => 'required',
+            'npej'              => 'required',
+        ]);
+
         $check_root = PelayananKesehatanModel::where('id',$request->root);
 
             $check_root->first()->children()->create([
-                'kunker' => $request->c_kunker,
-                'kunker_simral' => '',
-                'kunker_sinjab' => '',
-                'name' => $request->c_name,
-                'levelunker' => $request->c_levelunker,
-                'njab' => $request->c_njab,
-                'npej' => $request->c_npej
+                'kunker'            => $request->c_kunker,
+                'kunker_simral'     => '',
+                'kunker_sinjab'     => '',
+                'name'              => $request->c_name,
+                'levelunker'        => $check_root->first()->levelunker + 1,
+                'njab'              => $request->c_njab,
+                'npej'              => $request->c_npej
             ]);
 
         return redirect()->back();
+    }
+
+    public function edit($id)
+    {
+        $pelanan_kesehatan = PelayananKesehatanModel::find($id);        
+
+        return view('pelayanan-kesehatan::edit', compact('pelanan_kesehatan'));
+    }
+
+    public function update($id, Request $request)
+    {        
+        $request->validate([
+            'kunker'            => 'required',
+            'name'              => 'required',
+            /* 'kunker_sinjab'     => 'required',
+            // 'kunker_simral'     => 'required', */
+            // 'levelunker'        => 'required',
+            'njab'              => 'required',
+            'npej'              => 'required',
+        ]);
+        
+        PelayananKesehatanModel::find($id)->update([
+            'kunker'            => $request->kunker ? $request->kunker : '',
+            'name'              => $request->name  ? $request->name : '',
+            /* 'kunker_sinjab'     => $request->kunker_sinjab,
+            'kunker_simral'     => $request->kunker_simral', */
+            // 'levelunker'        => $request->levelunker  ? $request->levelunker : '',
+            'njab'              => $request->njab  ? $request->njab : '',
+            'npej'              => $request->npej  ? $request->npej : '',
+        ]);
+
+        $request->session()->flash('message', 'Successfully modified the pelanan_kesehatan!');
+
+        return redirect()->route('pelanan_kesehatan.index');
     }
 }
