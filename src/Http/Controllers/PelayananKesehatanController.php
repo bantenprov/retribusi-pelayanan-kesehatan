@@ -65,7 +65,7 @@ class PelayananKesehatanController extends Controller
     {
         $request->validate([
             'kunker'            => 'required',
-            'leveunker'         => 'required',
+            'levelunker'         => 'required',
             'name'              => 'required',
             'njab'              => 'required',
             'npej'              => 'required',
@@ -97,10 +97,10 @@ class PelayananKesehatanController extends Controller
     public function storeChild(Request $request)
     {
         $request->validate([
-            'kunker'            => 'required',
-            'name'              => 'required',
-            'njab'              => 'required',
-            'npej'              => 'required',
+            'c_kunker'            => 'required',
+            'c_name'              => 'required',
+            'c_njab'              => 'required',
+            'c_npej'              => 'required',
         ]);
 
         $check_root = PelayananKesehatanModel::where('id',$request->root);
