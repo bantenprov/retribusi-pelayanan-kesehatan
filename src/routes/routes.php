@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'pelayanan_kesehatan','middleware' => ['web']], function() {    
+Route::group(['prefix' => 'pelayanan-kesehatan','middleware' => ['web']], function() {    
 
     Route::get('', 'Bantenprov\PelayananKesehatan\Http\Controllers\PelayananKesehatanController@index')->name('pelayanan_kesehatan.index');
     Route::get('create-root', 'Bantenprov\PelayananKesehatan\Http\Controllers\PelayananKesehatanController@createRoot')->name('pelayanan_kesehatan.create.root');
