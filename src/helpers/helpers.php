@@ -1,8 +1,8 @@
 <?php
 
-if (! function_exists('checkLaravelOpd')) {
-    function checkLaravelOpd()
+if (! function_exists('PelayananKesehatan')) {
+    function PelayananKesehatan()
     {
-        return 'Welcome to function checkLaravelOpd() for Bantenprov\PelayananKesehatan package';
+        return 'Welcome to function PelayananKesehatan() for Bantenprov\PelayananKesehatan package';
     }
 }

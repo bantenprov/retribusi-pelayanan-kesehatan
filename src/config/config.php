@@ -12,6 +12,8 @@ return [
     |
     */
 
-    'key' => 'value'
+    'satuan' => [
+        'kg' => 'Kilogram'
+    ]
 
 ];
