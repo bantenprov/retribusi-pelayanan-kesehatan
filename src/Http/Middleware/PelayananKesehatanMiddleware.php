@@ -1,16 +1,14 @@
-<?php 
-
-namespace Bantenprov\PelayananKesehatan\Http\Middleware;
+<?php namespace Bantenprov\PelayananKesehatan\Http\Middleware;
 
 use Closure;
 
 /**
- * The PelayananKesehatanMiddleware class.
+ * The TarifPelayananKesehatanMiddleware class.
  *
  * @package Bantenprov\PelayananKesehatan
  * @author  bantenprov <developer.bantenprov@gmail.com>
  */
-class PelayananKesehatanMiddleware
+class TarifPelayananKesehatanMiddleware
 {
 
     /**

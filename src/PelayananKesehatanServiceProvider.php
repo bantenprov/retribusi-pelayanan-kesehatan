@@ -1,11 +1,10 @@
-<?php
-namespace Bantenprov\PelayananKesehatan;
+<?php namespace Bantenprov\PelayananKesehatan;
 
 use Illuminate\Support\ServiceProvider;
 use Bantenprov\PelayananKesehatan\Console\Commands\PelayananKesehatanCommand;
 
 /**
- * The PelayananKesehatanServiceProvider class
+ * The TarifPelayananKesehatanServiceProvider class
  *
  * @package Bantenprov\PelayananKesehatan
  * @author  bantenprov <developer.bantenprov@gmail.com>
@@ -51,7 +50,7 @@ class PelayananKesehatanServiceProvider extends ServiceProvider
             return new PelayananKesehatanCommand;
         });
 
-        //$this->commands('command.pelayanan-kesehatan');
+        $this->commands('command.pelayanan-kesehatan');
     }
 
     /**
@@ -106,7 +105,7 @@ class PelayananKesehatanServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom($packageTranslationsPath, 'pelayanan-kesehatan');
 
         $this->publishes([
-            $packageTranslationsPath => resource_path('lang/bantenprov/pelayanan-kesehatan'),
+            $packageTranslationsPath => resource_path('lang/vendor/pelayanan-kesehatan'),
         ], 'lang');
     }
 
@@ -122,8 +121,8 @@ class PelayananKesehatanServiceProvider extends ServiceProvider
         $this->loadViewsFrom($packageViewsPath, 'pelayanan-kesehatan');
 
         $this->publishes([
-            $packageViewsPath => resource_path('views/bantenprov/pelayanan-kesehatan'),
-        ], 'pelayanan-kesehatan-views');
+            $packageViewsPath => resource_path('views/vendor/pelayanan-kesehatan'),
+        ], 'views');
     }
 
     /**
@@ -136,7 +135,7 @@ class PelayananKesehatanServiceProvider extends ServiceProvider
         $packageAssetsPath = __DIR__.'/resources/assets';
 
         $this->publishes([
-            $packageAssetsPath => public_path('bantenprov/pelayanan-kesehatan'),
+            $packageAssetsPath => public_path('vendor/pelayanan-kesehatan'),
         ], 'public');
     }
 
@@ -149,7 +148,7 @@ class PelayananKesehatanServiceProvider extends ServiceProvider
     {
         $packageMigrationsPath = __DIR__.'/database/migrations';
 
-        //$this->loadMigrationsFrom($packageMigrationsPath);
+        $this->loadMigrationsFrom($packageMigrationsPath);
 
         $this->publishes([
             $packageMigrationsPath => database_path('migrations')

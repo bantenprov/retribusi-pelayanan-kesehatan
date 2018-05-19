@@ -3,7 +3,7 @@
 use Illuminate\Console\Command;
 
 /**
- * The PelayananKesehatanCommand class.
+ * The TarifPelayananKesehatanCommand class.
  *
  * @package Bantenprov\PelayananKesehatan
  * @author  bantenprov <developer.bantenprov@gmail.com>
