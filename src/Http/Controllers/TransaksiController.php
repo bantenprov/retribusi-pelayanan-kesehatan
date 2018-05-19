@@ -26,8 +26,9 @@ class TransaksiController extends Controller
 {
     public function index()
     {
+        $transaksis = TransaksiModel::all();
 
-        return view('pelayanan-kesehatan::transaksi.index');
+        return view('pelayanan-kesehatan::transaksi.index', compact('transaksis'));
     }
 
     public function create()
@@ -56,7 +57,11 @@ class TransaksiController extends Controller
 
         $daftar_retribusi = DaftarRetribusiModel::find($request->daftar_retribusi_id);
 
-        $master_tarif = MasterTarifModel::where('daftar_retribusi_id', '=', $daftar_retribusi->id)->where('status', '=', '1')->first();
+        $master_tarif = MasterTarifModel::where('daftar_retribusi_id', '=', $daftar_retribusi->id)->where('status', '=', '1');
+
+        if($master_tarif->count() == 0){
+            return redirect()->back()->withErrors('Master retribusi not found.');
+        }
 
         TransaksiModel::create([
             'uuid'                      => Uuid::uuid5(Uuid::NAMESPACE_DNS, 'bantenprov.go.id'.date('YmdHis')),
@@ -67,10 +72,10 @@ class TransaksiController extends Controller
             'potongan'                  => $request->potongan,
             'admin_id'                  => \Auth::user()->id,
             'customer_transaksi_id'     => 1,
-            'tarif_id'                  => $master_tarif->id,
+            'tarif_id'                  => $master_tarif->first()->id,
             'admin_uuid'                => Uuid::uuid5(Uuid::NAMESPACE_DNS, 'bantenprov.go.id'.date('YmdHis')),
             'customer_transaksi_uuid'   => Uuid::uuid5(Uuid::NAMESPACE_DNS, 'bantenprov.go.id'.date('YmdHis')),
-            'tarif_uuid'                => $master_tarif->uuid,
+            'tarif_uuid'                => $master_tarif->first()->uuid,
         ]);
 
         $request->session()->flash('message', 'Success add new transaksi');
@@ -78,10 +83,11 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi.index');
     }
 
-    public function show()
+    public function show($id)
     {
+        $transaksi = TransaksiModel::find($id);
 
-        return view('pelayanan-kesehatan::transaksi.show');
+        return view('pelayanan-kesehatan::transaksi.show', compact('transaksi'));
     }
 
     public function edit()
@@ -96,9 +102,10 @@ class TransaksiController extends Controller
         return view('pelayanan-kesehatan::transaksi.index');
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $transaksi = TransaksiModel::find($id)->delete();
 
-        return view('pelayanan-kesehatan::transaksi.index');
+        return redirect()->route('transaksi.index')->with('message', 'Success delete transaksi.');
     }
 }
